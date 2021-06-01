@@ -69,6 +69,8 @@
     <Compile Include="Assets\Script\Joystick\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\Script\Joystick\Joysticks\VariableJoystick.cs" />
     <Compile Include="Assets\Script\Player\PlayerController.cs" />
+    <None Include="Assets\FREE Food Pack\Shaders\Food.shader" />
+    <None Include="Assets\Crates And Barrels Pack Volume 1 - Free Version\manual.txt" />
     <None Include="Assets\Resource\map\Simple city plain\Read_me.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/겜프/New Unity Project (1)/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

@@ -9,26 +9,39 @@ public class ItemAction : MonoBehaviour
 
      public GameObject player;
      public GameObject playerItemPoint;
+     public GameObject Item;
      public PlayerController playerLogic;
      public Animator ani;
      public GameObject tablePoint;
 
      private Vector3 forceDirection;
-     public bool IsPlayerEnter;
+     private bool IsPlayerEnter;
      private bool IsTableEnter;
      private bool IsEnable;
+     public bool IsEmpty;
      private float Timer;
      private float WaitingTime;
+
+     public enum ItemState
+     {
+          Box,
+          Player,
+          Table,
+          Plate,
+     }
+     public ItemState itemState;
 
      public void Awake()
      {
           player = GameObject.FindGameObjectWithTag("Player");
           playerItemPoint = GameObject.FindGameObjectWithTag("ItemPoint");
+          Item = GameObject.FindGameObjectWithTag("Item");
+          tablePoint = GameObject.FindGameObjectWithTag("Table");
 
           ani = player.GetComponent<Animator>();
           playerLogic = player.GetComponent<PlayerController>();
-          tablePoint = GameObject.FindGameObjectWithTag("Table");
 
+          itemState = ItemState.Box;
           IsEnable = false;
 
           Timer = 0.0f;
@@ -42,20 +55,28 @@ public class ItemAction : MonoBehaviour
                Timer = 0;
                if (IsEnable && IsPlayerEnter)
                {
-                    transform.SetParent(playerItemPoint.transform);
-                    transform.localPosition = Vector3.zero;
-                    transform.rotation = new Quaternion(0, 0, 0, 0);
+                    if (IsEmpty)
+                    {
+                         transform.SetParent(playerItemPoint.transform);
+                         transform.localPosition = Vector3.zero;
+                         transform.rotation = new Quaternion(0, 0, 0, 0);
 
-                    IsPlayerEnter = false;
+                         IsPlayerEnter = false;
+                         itemState = ItemState.Player;
+                    }
                }
                if (IsEnable && IsTableEnter)
                {
-                    transform.SetParent(tablePoint.transform);
-                    transform.localScale = new Vector3(0.15f, 0.36f, 0.15f);
-                    transform.localPosition = Vector3.zero;
-                    transform.rotation = new Quaternion(0, 0, 0, 0);
+                    if (!IsEmpty)
+                    {
+                         transform.SetParent(tablePoint.transform);
+                         transform.localScale = new Vector3(0.15f, 0.36f, 0.15f);
+                         transform.localPosition = Vector3.zero;
+                         transform.rotation = new Quaternion(0, 0, 0, 0);
 
-                    IsTableEnter = false;
+                         IsTableEnter = false;
+                         itemState = ItemState.Table;
+                    }
                }
                IsEnable = false;
           }
@@ -67,7 +88,7 @@ public class ItemAction : MonoBehaviour
           {
                IsEnable = true;
                ani.SetTrigger("Enable");
-               
+               IsEmpty = GetIsEmpty();
           }
      }
 
@@ -93,5 +114,11 @@ public class ItemAction : MonoBehaviour
           {
                IsTableEnter = true;
           }
+     }
+
+     public bool GetIsEmpty()
+     {
+          int cCount = playerItemPoint.transform.childCount;
+          return (cCount == 0 ? true : false);
      }
 }
