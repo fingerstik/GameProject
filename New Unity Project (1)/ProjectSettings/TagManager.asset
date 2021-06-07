@@ -5,9 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Map
-  - Item
   - ItemPoint
   - Table
+  - Cook
+  - TrashCan
+  - Tomato
+  - Salary
+  - STomato
+  - SSalary
+  - SaladMix
+  - Item
   layers:
   - Default
   - TransparentFX

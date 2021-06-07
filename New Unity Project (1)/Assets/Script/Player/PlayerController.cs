@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
      public bool StopByStage;
      private bool IsMotion;
      private bool IsDash;
+     private bool IsPicking;
 
      [Header("Player Moving")]
      public float speed;
@@ -49,6 +50,43 @@ public class PlayerController : MonoBehaviour
      {
           IsDash = false;
           ani.SetBool("isDashing", false);
+     }
+     public void OnEnableDown()
+     {
+          if(IsPicking)
+               Drop();
+     }
+
+     public void Pickup (GameObject item)
+     {
+          Collider[] itemColliders = item.GetComponents<Collider>();
+          Rigidbody itemRigidbody = item.GetComponent<Rigidbody>();
+
+          foreach(Collider itemCollider in itemColliders)
+          {
+               itemCollider.enabled = false;
+          }
+          itemRigidbody.isKinematic = true;
+
+          ani.SetTrigger("Enable");
+          IsPicking = true;
+     }
+     public void Drop ()
+     {
+          GameObject item = PlayerItemPoint.GetComponentInChildren<Rigidbody>().gameObject;
+          Collider[] itemColliders = item.GetComponents<Collider>();
+          Rigidbody itemRigidbody = item.GetComponent<Rigidbody>();
+
+          foreach (Collider itemCollider in itemColliders)
+          {
+               itemCollider.enabled = true;
+          }
+          itemRigidbody.isKinematic = false;
+
+          PlayerItemPoint.transform.DetachChildren();
+          ani.SetTrigger("Enable");
+          IsPicking = false;
+
      }
 
      public void Update()

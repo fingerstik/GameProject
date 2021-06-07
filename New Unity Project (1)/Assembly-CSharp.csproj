@@ -62,7 +62,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CabinetScript.cs" />
     <Compile Include="Assets\Chasing.cs" />
+    <Compile Include="Assets\CookingMaster.cs" />
+    <Compile Include="Assets\EnableHandler.cs" />
     <Compile Include="Assets\FirstSceneManager.cs" />
     <Compile Include="Assets\ItemAction.cs" />
     <Compile Include="Assets\Script\Joystick\Base\Joystick.cs" />
@@ -72,6 +75,8 @@
     <Compile Include="Assets\Script\Joystick\Joysticks\VariableJoystick.cs" />
     <Compile Include="Assets\Script\Player\PlayerController.cs" />
     <Compile Include="Assets\StageManager.cs" />
+    <Compile Include="Assets\TableAction.cs" />
+    <Compile Include="Assets\TrashCan.cs" />
     <Compile Include="Assets\itjusttest.cs" />
     <Compile Include="Assets\text.cs" />
     <None Include="Assets\FREE Food Pack\Shaders\Food.shader" />

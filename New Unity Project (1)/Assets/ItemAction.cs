@@ -7,17 +7,17 @@ public class ItemAction : MonoBehaviour
 {
      public float speed = 1f;
 
-     public GameObject player;
-     public GameObject playerItemPoint;
-     public GameObject Item;
-     public PlayerController playerLogic;
-     public Animator ani;
-     public GameObject tablePoint;
+     GameObject player;
+     GameObject playerItemPoint;
+     PlayerController playerLogic;
+     Animator ani;
+     GameObject tablePoint;
+     GameObject Item;
 
      private Vector3 forceDirection;
-     private bool IsPlayerEnter;
-     private bool IsTableEnter;
-     private bool IsEnable;
+     public bool IsPlayerEnter;
+     public bool IsTableEnter;
+     public bool IsEnable;
      public bool IsEmpty;
      private float Timer;
      private float WaitingTime;
@@ -35,14 +35,15 @@ public class ItemAction : MonoBehaviour
      {
           player = GameObject.FindGameObjectWithTag("Player");
           playerItemPoint = GameObject.FindGameObjectWithTag("ItemPoint");
-          Item = GameObject.FindGameObjectWithTag("Item");
           tablePoint = GameObject.FindGameObjectWithTag("Table");
+          Item = this.gameObject;
 
           ani = player.GetComponent<Animator>();
           playerLogic = player.GetComponent<PlayerController>();
 
           itemState = ItemState.Box;
           IsEnable = false;
+          IsEmpty = true;
 
           Timer = 0.0f;
           WaitingTime = 0.5f;
@@ -61,6 +62,7 @@ public class ItemAction : MonoBehaviour
                          transform.localPosition = Vector3.zero;
                          transform.rotation = new Quaternion(0, 0, 0, 0);
 
+                         playerLogic.Pickup(gameObject);
                          IsPlayerEnter = false;
                          itemState = ItemState.Player;
                     }
@@ -119,6 +121,7 @@ public class ItemAction : MonoBehaviour
      public bool GetIsEmpty()
      {
           int cCount = playerItemPoint.transform.childCount;
+          Debug.Log("cCount is " + cCount);
           return (cCount == 0 ? true : false);
      }
 }
