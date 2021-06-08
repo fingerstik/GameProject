@@ -32,15 +32,13 @@ public class CookingMaster : MonoBehaviour
                }
                isButtonDown = false;
                isPlayerEnter = false;
-
           }
      }
      void MakeItem()
      {
           GameObject ItemPtr = ItemPoint.GetComponentInChildren<Rigidbody>().gameObject;
-          Debug.Log(ItemPtr.tag);
-          Debug.Log("태그 소환");
-          if (ItemPtr.tag == "Tomato") {
+          if (ItemPtr.tag == "Tomato")
+          {
                Destroy(ItemPtr);
                Quaternion newRot = Quaternion.Euler(ItemPoint.transform.rotation.x, ItemPoint.transform.rotation.y + 90f, ItemPoint.transform.rotation.z);
                GameObject MadeItem = Instantiate(SlicedTomato, ItemPoint.transform.position, newRot);
