@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+     [Header("Player")]
      public PlayerController playerLogic;
 
+     [Header("Count")]
      public GameObject CountNo1;
      public GameObject CountNo2;
      public GameObject CountNo3;
+
+     [Header("UI Info")]
+     public TimeLeft timeLeft;
+     public ScoreManager scManager;
+
+     [Header("Scene")]
+     public GameSceneManager gcManager;
 
      static STATE State;
 
@@ -78,11 +87,12 @@ public class StageManager : MonoBehaviour
                     CountNo2.SetActive(false);
                     CountNo1.SetActive(true);
                }
-               else
                //시작 출력
+               else
                {
                     CountNo1.SetActive(false);
                     playerLogic.StopByStage = false;
+                    State = STATE.STAGE;
                     Time.timeScale = 1.0f; //게임시작
                }
           }
@@ -91,10 +101,16 @@ public class StageManager : MonoBehaviour
 
      public void GameStage()
      {
-
+          StageTime = timeLeft.GetTime();
+          StageScore = scManager.GetScore();
+          if(StageTime == 0)
+          {
+               playerLogic.StopByStage = true;
+               State = STATE.END;
+          }
      }
      public void EndStage()
      {
-
+          gcManager.GoEndScene();
      }
 }

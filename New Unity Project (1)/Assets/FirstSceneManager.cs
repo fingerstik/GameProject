@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,23 @@ public class FirstSceneManager : MonoBehaviour
      }
 
      // Update is called once per frame
+     public void MakeLobby()
+     {
+
+     }
+     public void EnterLobby()
+     {
+
+     }
+     public void EndGame()    
+     {
+#if UNITY_EDITOR
+          UnityEditor.EditorApplication.isPlaying = false;
+#else
+          Application.Quit();
+#endif
+     }
+
      public void GoGameScene()
      {
           SceneManager.LoadScene("GameScene");
