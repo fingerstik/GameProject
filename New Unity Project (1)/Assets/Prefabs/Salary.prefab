@@ -90,7 +90,6 @@ GameObject:
   - component: {fileID: 5418661302457157317}
   - component: {fileID: 5657653572776001913}
   - component: {fileID: 3997842650692674545}
-  - component: {fileID: 8697664021204605566}
   m_Layer: 8
   m_Name: Salary
   m_TagString: Salary
@@ -142,21 +141,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 5, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8697664021204605566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7182350882628623487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f34f318036d1fa4fb1b77a7b006a29d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  IsPlayerEnter: 0
-  IsTableEnter: 0
-  IsEnable: 0
-  IsEmpty: 0
-  itemState: 0

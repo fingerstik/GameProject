@@ -9,7 +9,7 @@ public class TimeLeft : MonoBehaviour
      // Start is called before the first frame update
      void Start()
      {
-          time = 181f;
+          time = 11f;
      }
 
      // Update is called once per frame

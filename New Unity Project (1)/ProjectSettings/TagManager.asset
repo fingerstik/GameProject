@@ -15,6 +15,10 @@ TagManager:
   - SSalary
   - SaladMix
   - Item
+  - Fish
+  - Shrimp
+  - SlicedShrimp
+  - RawFish
   layers:
   - Default
   - TransparentFX

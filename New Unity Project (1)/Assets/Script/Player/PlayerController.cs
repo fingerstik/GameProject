@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
      public float dashSpeed;
      private float DashTime;
      private float DashCoolTime;
-     private bool IsFirstDash;
      public VariableJoystick variableJoystick;
 
      [Header("Player Having")]
@@ -40,7 +39,6 @@ public class PlayerController : MonoBehaviour
           if (Time.time - DashCoolTime > 3.0f)
           {
                IsDash = true;
-               IsFirstDash = false;
                ani.SetBool("isDashing", true);
                DashTime = Time.time;
                DashCoolTime = Time.time;

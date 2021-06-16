@@ -8,6 +8,8 @@ public class CookingMaster : MonoBehaviour
      GameObject player;
      public GameObject SlicedSalary;
      public GameObject SlicedTomato;
+     public GameObject RawFish;
+     public GameObject SlicedShrimp;
      public GameObject TablePoint;
 
      public bool isPlayerEnter;
@@ -49,6 +51,20 @@ public class CookingMaster : MonoBehaviour
                Destroy(ItemPtr);
                Quaternion newRot = Quaternion.Euler(ItemPoint.transform.rotation.x, ItemPoint.transform.rotation.y + 90f, ItemPoint.transform.rotation.z);
                GameObject MadeItem = Instantiate(SlicedSalary, ItemPoint.transform.position, newRot);
+               MadeItem.transform.SetParent(ItemPoint.transform);
+          }
+          else if (ItemPtr.tag == "Fish")
+          {
+               Destroy(ItemPtr);
+               Quaternion newRot = Quaternion.Euler(ItemPoint.transform.rotation.x, ItemPoint.transform.rotation.y + 90f, ItemPoint.transform.rotation.z);
+               GameObject MadeItem = Instantiate(RawFish, ItemPoint.transform.position, newRot);
+               MadeItem.transform.SetParent(ItemPoint.transform);
+          }
+          else if (ItemPtr.tag == "Shrimp")
+          {
+               Destroy(ItemPtr);
+               Quaternion newRot = Quaternion.Euler(ItemPoint.transform.rotation.x, ItemPoint.transform.rotation.y + 90f, ItemPoint.transform.rotation.z);
+               GameObject MadeItem = Instantiate(SlicedShrimp, ItemPoint.transform.position, newRot);
                MadeItem.transform.SetParent(ItemPoint.transform);
           }
           ItemPtr.transform.position = ItemPoint.transform.position;

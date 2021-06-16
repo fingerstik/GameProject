@@ -64,12 +64,15 @@
   <ItemGroup>
     <Compile Include="Assets\CabinetScript.cs" />
     <Compile Include="Assets\Chasing.cs" />
+    <Compile Include="Assets\ControlRecipe.cs" />
     <Compile Include="Assets\CookingMaster.cs" />
     <Compile Include="Assets\EnableHandler.cs" />
     <Compile Include="Assets\FirstSceneManager.cs" />
     <Compile Include="Assets\GameSceneManager.cs" />
     <Compile Include="Assets\ItemAction.cs" />
     <Compile Include="Assets\MixedMaster.cs" />
+    <Compile Include="Assets\RPG Food &amp; Drinks Pack\Assets\Scripts\Consumer.cs" />
+    <Compile Include="Assets\RPG Food &amp; Drinks Pack\Assets\Scripts\Rotator.cs" />
     <Compile Include="Assets\ScoreManager.cs" />
     <Compile Include="Assets\ScoreTable.cs" />
     <Compile Include="Assets\Script\Joystick\Base\Joystick.cs" />

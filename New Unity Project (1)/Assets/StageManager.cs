@@ -7,14 +7,23 @@ public class StageManager : MonoBehaviour
      [Header("Player")]
      public PlayerController playerLogic;
 
-     [Header("Count")]
+     [Header("Count n TimeOver")]
      public GameObject CountNo1;
      public GameObject CountNo2;
      public GameObject CountNo3;
+     public GameObject TimeOver;
 
      [Header("UI Info")]
      public TimeLeft timeLeft;
      public ScoreManager scManager;
+     public ControlRecipe controlRecipe;
+     private int[] Recipe;
+
+     [Header("Check")]
+     public int chekcRecipe1;
+     public int chekcRecipe2;
+     public int chekcRecipe3;
+
 
      [Header("Scene")]
      public GameSceneManager gcManager;
@@ -36,11 +45,21 @@ public class StageManager : MonoBehaviour
           CountNo1.SetActive(false);
           CountNo2.SetActive(false);
           CountNo3.SetActive(false);
+          TimeOver.SetActive(false);
+          Recipe = new int[3];
+
+          for (int i = 0; i < 3; i++)
+          {
+               Recipe[i] = -1;
+          }
      }
 
      // Update is called once per frame
      void Update()
      {
+          chekcRecipe1 = Recipe[0];
+          chekcRecipe2 = Recipe[1];
+          chekcRecipe3 = Recipe[2];
           //게임 시작시 정지
           
           switch (State)
@@ -93,24 +112,65 @@ public class StageManager : MonoBehaviour
                     CountNo1.SetActive(false);
                     playerLogic.StopByStage = false;
                     State = STATE.STAGE;
+                    Timer = 0;
+                    MakeRecipe();
                     Time.timeScale = 1.0f; //게임시작
                }
           }
      }
 
-
      public void GameStage()
      {
           StageTime = timeLeft.GetTime();
           StageScore = scManager.GetScore();
-          if(StageTime == 0)
+          Timer++;
+          if (Timer % 300 == 0)
           {
+               MakeRecipe();
+               Timer = 0;
+          }
+
+          if (StageTime == 0)
+          {
+               Timer = 0;
                playerLogic.StopByStage = true;
                State = STATE.END;
           }
      }
      public void EndStage()
      {
-          gcManager.GoEndScene();
+          if (Timer <= 60)
+          {
+               Timer++;
+               TimeOver.SetActive(true);
+          }
+          else
+               gcManager.GoEndScene();
+     }
+     public void ResetRecipe(int idx)
+     {
+          Recipe[idx-1] = -1;
+     }
+     public int GetRecipe(int idx)
+     {
+          return Recipe[idx-1];
+     }
+     private void MakeRecipe() {
+          if (Recipe[0] == -1)
+          {
+               Recipe[0] = Random.Range(1, 4);
+               controlRecipe.OnRecipe(1, Recipe[0]);
+               
+          }
+          else if (Recipe[1] == -1)
+          {
+               Recipe[1] = Random.Range(1, 4);
+               controlRecipe.OnRecipe(2, Recipe[1]);
+          }
+          else if (Recipe[2] == -1)
+          {
+               Recipe[2] = Random.Range(1, 4);
+               controlRecipe.OnRecipe(3, Recipe[2]);
+          }
      }
 }
