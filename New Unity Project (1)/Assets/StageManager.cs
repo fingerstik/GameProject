@@ -18,6 +18,7 @@ public class StageManager : MonoBehaviour
      public ScoreManager scManager;
      public ControlRecipe controlRecipe;
      private int[] Recipe;
+     public Fade UIFade;
 
      [Header("Check")]
      public int chekcRecipe1;
@@ -30,6 +31,7 @@ public class StageManager : MonoBehaviour
 
      static STATE State;
 
+     private bool check;
      private float StageTime;
      private int StageScore;
      private int Timer;
@@ -39,6 +41,7 @@ public class StageManager : MonoBehaviour
      // Start is called before the first frame update
      void Start()
      {
+          check = false;
           Timer = 0;
           StageTime = 0;
           State = STATE.START;
@@ -80,7 +83,7 @@ public class StageManager : MonoBehaviour
      public void StartStage()
      {
           //게임 시작
-          if(Timer == 0)
+          if (Timer == 0)
           {
                playerLogic.StopByStage = true;
                Time.timeScale = 0.0f;
@@ -139,13 +142,21 @@ public class StageManager : MonoBehaviour
      }
      public void EndStage()
      {
-          if (Timer <= 60)
+          if (Timer <= 90)
           {
+               if (Timer >= 30 && !check)
+               {
+                    UIFade.StartFadeOut();
+                    check = true;
+               }
                Timer++;
                TimeOver.SetActive(true);
           }
           else
+          {
+               Invoke(null, 1);
                gcManager.GoEndScene();
+          }
      }
      public void ResetRecipe(int idx)
      {
