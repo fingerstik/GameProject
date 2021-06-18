@@ -6,12 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class FirstSceneManager : MonoBehaviour
 {
-     public Fade UIFade;
-     private float Timer;
+     public PhotonManager phManager;
      // Start is called before the first frame update
      void Start()
      {
-          UIFade.StartFadeIn();
           Screen.SetResolution(1920, 1080, false);
      }
 
@@ -35,13 +33,22 @@ public class FirstSceneManager : MonoBehaviour
 
      public void GoGameScene()
      {
-          UIFade.StartFadeOut();
-          Invoke("LoadGameScene", 1);
+          StartCoroutine("LoadScene", "GameScene");
      }
 
-     void LoadGameScene()
+     IEnumerator LoadScene(string sceneName)
      {
-          UIFade.StartFadeOut();
-          SceneManager.LoadScene("GameScene");
+          phManager.Connect();
+          yield return new WaitForSeconds(1.0f);
+
+          while (!phManager.IsRoomFull())
+          {
+               yield return null;
+          }
+          AsyncOperation asyncOper = SceneManager.LoadSceneAsync(sceneName);
+          while(!asyncOper.isDone)
+          {
+               yield return null;
+          }
      }
 }
