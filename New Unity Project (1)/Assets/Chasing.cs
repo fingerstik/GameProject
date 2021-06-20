@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Chasing : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Chasing : MonoBehaviour
      public float CameraZ;
      private void Start()
      {
+
           Target = Player;
           Vector3 TargetPos = new Vector3(Target.transform.position.x + CameraX, Target.transform.position.y + CameraY, Target.transform.position.z + CameraZ);
           transform.position = TargetPos;
@@ -18,9 +20,9 @@ public class Chasing : MonoBehaviour
      void FixedUpdate()
      {
           Vector3 TargetPos = new Vector3(Target.transform.position.x + CameraX, Target.transform.position.y + CameraY, Target.transform.position.z + CameraZ);
-          transform.position = Vector3.Lerp(transform.position, TargetPos, moveRateTime(Time.deltaTime * 2f, 0.5f));
+          transform.position = Vector3.Lerp(transform.position, TargetPos, MoveRateTime(Time.deltaTime * 2f, 0.5f));
      }
-     float moveRateTime(float time, float rate)
+     float MoveRateTime(float time, float rate)
      {
           if (time <= 1)
                return time / 2;

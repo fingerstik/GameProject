@@ -9,22 +9,27 @@ public class EndSceneManager : MonoBehaviour
 {
      public Fade UIFade;
      private float Timer;
+     public PhotonManager phManager;
+     public Text WaitingText;
+
      [Header("Result UI")]
      public Text ResultText;
      // Start is called before the first frame update
      void Start()
      {
-          Screen.SetResolution(1920, 1080, false);
           Cursor.visible = true;
           Cursor.lockState = CursorLockMode.Confined;
 
           UIFade.StartFadeIn();
-          ResultText.text = "Score : " + GameResult.ClearScore;
+          WaitingText.gameObject.SetActive(false);
+          ResultText.text = "My Score : " + GameResult.MyClearScore + 
+               "\nOther Score : " + GameResult.OtherClearScore + "\n" + 
+               GameResult.GetWinner();
      }
      public void RestartGame()
      {
           UIFade.StartFadeOut();
-          Invoke("LoadStartScene", 1);
+          Invoke("LoadGameScene", 1);
      }
      public void QuitScene()
      {
@@ -34,10 +39,32 @@ public class EndSceneManager : MonoBehaviour
 
      void LoadStartScene()
      {
-          SceneManager.LoadScene("StartScene");
+          StartCoroutine(GoStartScene());
      }
      void LoadGameScene()
      {
-          SceneManager.LoadScene("GameScene");
+          StartCoroutine(GoGameScene());
+     }
+
+     IEnumerator GoStartScene()
+     {
+          WaitingText.gameObject.SetActive(true);
+
+          AsyncOperation asyncOper = SceneManager.LoadSceneAsync("StartScene");
+          while (!asyncOper.isDone)
+          {
+               yield return null;
+          }
+     }
+
+     IEnumerator GoGameScene()
+     {
+          WaitingText.gameObject.SetActive(true);
+
+          AsyncOperation asyncOper = SceneManager.LoadSceneAsync("GameScene");
+          while (!asyncOper.isDone)
+          {
+               yield return null;
+          }
      }
 }

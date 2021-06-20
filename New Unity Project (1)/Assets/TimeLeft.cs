@@ -5,28 +5,34 @@ using UnityEngine.UI;
 
 public class TimeLeft : MonoBehaviour
 {
+     public float TimeInput;
      public static float time;
+     public bool IsStop;
      // Start is called before the first frame update
      void Start()
      {
-          time = 11f;
+          time = TimeInput;
+          IsStop = false;
      }
 
      // Update is called once per frame
      void Update()
      {
-          if(time != 0)
+          if (!IsStop)
           {
-               time -= Time.deltaTime;
-               if(time <= 0)
+               if (time != 0)
                {
-                    time = 0;
+                    time -= Time.deltaTime;
+                    if (time <= 0)
+                    {
+                         time = 0;
+                    }
                }
-          }
 
-          int t = Mathf.FloorToInt(time);
-          Text uiText = GetComponent<Text>();
-          uiText.text = "Time : " + (t/60).ToString() + ":" + (t%60).ToString();
+               int t = Mathf.FloorToInt(time);
+               Text uiText = GetComponent<Text>();
+               uiText.text = "Time : " + (t / 60).ToString() + ":" + (t % 60).ToString();
+          }
 
 
      }

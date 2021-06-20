@@ -269,3 +269,4 @@ D:\겜프\New Unity Project (1)\obj\Debug\PhotonChat.csproj.CoreCompileInputs.ca
 D:\겜프\New Unity Project (1)\obj\Debug\PhotonChat.csproj.CopyComplete
 D:\겜프\New Unity Project (1)\obj\Debug\PhotonChat.dll
 D:\겜프\New Unity Project (1)\obj\Debug\PhotonChat.pdb
+D:\겜프\New Unity Project (1)\Temp\bin\Debug\clipper_library.dll

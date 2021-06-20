@@ -2,26 +2,19 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class FirstSceneManager : MonoBehaviour
 {
      public PhotonManager phManager;
-     // Start is called before the first frame update
-     void Start()
-     {
-          Screen.SetResolution(1920, 1080, false);
-     }
+     public Text WaitingText;
 
-     // Update is called once per frame
-     public void MakeLobby()
+     public void Start()
      {
-
+          WaitingText.gameObject.SetActive(false);
      }
-     public void EnterLobby()
-     {
-
-     }
+     
      public void EndGame()    
      {
 #if UNITY_EDITOR
@@ -39,7 +32,17 @@ public class FirstSceneManager : MonoBehaviour
      IEnumerator LoadScene(string sceneName)
      {
           phManager.Connect();
+          //UIFade.StartFadeOut();
           yield return new WaitForSeconds(1.0f);
+          if (phManager.IsHost())
+          {
+               WaitingText.text = "Player is Host\n" + WaitingText.text;
+          }
+          else
+          {
+               WaitingText.text = "Player is Client\n" + WaitingText.text;
+          }
+          WaitingText.gameObject.SetActive(true);
 
           while (!phManager.IsRoomFull())
           {

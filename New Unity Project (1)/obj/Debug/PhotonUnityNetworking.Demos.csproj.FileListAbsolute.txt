@@ -272,3 +272,4 @@ D:\겜프\New Unity Project (1)\obj\Debug\PhotonUnityNetworking.Demos.csproj.Cor
 D:\겜프\New Unity Project (1)\obj\Debug\PhotonUnityNetworking.Demos.csproj.CopyComplete
 D:\겜프\New Unity Project (1)\obj\Debug\PhotonUnityNetworking.Demos.dll
 D:\겜프\New Unity Project (1)\obj\Debug\PhotonUnityNetworking.Demos.pdb
+D:\겜프\New Unity Project (1)\Temp\bin\Debug\clipper_library.dll

@@ -2,29 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class ScoreManager : MonoBehaviour
 {
-     public static int score;
-     private Text text;
+     public static int MyScore;
+     public static int OtherScore;
+     public Text MyText;
+     public Text OtherText;
      // Start is called before the first frame update
      void Start()
      {
-          score = 0;
-          text = GetComponent<Text>();
+          MyScore = 0;
+          OtherScore = 0;
+
      }
 
      // Update is called once per frame
      void Update()
      {
-          text.text = "Score : " + score.ToString();
+          MyText.text = "My Score : " + MyScore.ToString();
+          OtherText.text = "Other Score : " + OtherScore.ToString();
      }
      public void AddScore()
      {
-          score+=10;
+          MyScore += 10;
      }
-     public int GetScore()
+     public int GetMyScore()
      {
-          return score;
+          return MyScore;
+     }
+     public int GetOtherScore()
+     {
+          return OtherScore;
      }
 }

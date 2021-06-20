@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPun
 {
+
      [Header("Plyaer Condition")]
      public GameObject PlayerModel;
      public GameObject PlayerItemPoint;
      public bool StopByStage;
-     private bool IsMotion;
      private bool IsDash;
      private bool IsPicking;
 
@@ -19,18 +21,19 @@ public class PlayerController : MonoBehaviour
      private float DashCoolTime;
      public VariableJoystick variableJoystick;
 
-     [Header("Player Having")]
 
      [Header("Plyaer Animation")]
      public Animator ani;
-
      private Rigidbody playerRB;
+
+     [Header("OtherPlayer")]
+     public PhotonView PV;
 
      public void Awake()
      {
           playerRB = GetComponent<Rigidbody>();
           ani = GetComponent<Animator>();
-          IsMotion = false;
+          StopByStage = false;
           DashCoolTime = Time.time;
      }
 
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour
           IsDash = false;
           ani.SetBool("isDashing", false);
      }
+
      public void OnEnableDown()
      {
           if(IsPicking)
@@ -87,6 +91,24 @@ public class PlayerController : MonoBehaviour
 
      }
 
+     public void PlayerMoving()
+     {
+          Vector3 direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
+          direction = direction.normalized * speed * Time.fixedDeltaTime;
+          if (direction.x == 0.0f && direction.z == 0.0f) ani.SetBool("isMoving", false);
+          else ani.SetBool("isMoving", true);
+          playerRB.MovePosition(transform.position + direction);
+          if (direction.x != 0.0f || direction.y != 0.0f)
+               playerRB.transform.rotation = Quaternion.LookRotation(direction);
+          if (Time.time - DashTime < 1.0f && IsDash)
+          {
+               playerRB.MovePosition(transform.position + direction * dashSpeed);
+               if (direction.x != 0.0f || direction.y != 0.0f)
+                    playerRB.transform.rotation = Quaternion.LookRotation(direction);
+          }
+          else OnDashUp();
+     }
+
      public void Update()
      {
           //스테이지에 의해 행동 불능
@@ -95,22 +117,6 @@ public class PlayerController : MonoBehaviour
                ani.SetBool("isMoving", false);
                return;
           }
-          Vector3 direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
-          if (!IsMotion)
-          {
-               direction = direction.normalized * speed * Time.fixedDeltaTime;
-               if (direction.x == 0.0f && direction.z == 0.0f) ani.SetBool("isMoving", false);
-               else ani.SetBool("isMoving", true);
-               playerRB.MovePosition(transform.position + direction);
-               if(direction.x != 0.0f || direction.y != 0.0f)
-                    playerRB.transform.rotation = Quaternion.LookRotation(direction);
-               if(Time.time - DashTime < 1.0f && IsDash)
-               {
-                    playerRB.MovePosition(transform.position + direction*dashSpeed);
-                    if (direction.x != 0.0f || direction.y != 0.0f)
-                         playerRB.transform.rotation = Quaternion.LookRotation(direction);
-               }
-               else OnDashUp();
-          }
+               PlayerMoving();
      }
 }

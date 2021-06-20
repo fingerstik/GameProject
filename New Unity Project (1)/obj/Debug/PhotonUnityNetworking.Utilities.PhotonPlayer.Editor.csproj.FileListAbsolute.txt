@@ -287,3 +287,4 @@ D:\겜프\New Unity Project (1)\obj\Debug\PhotonUnityNetworking.Utilities.Photon
 D:\겜프\New Unity Project (1)\obj\Debug\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj.CopyComplete
 D:\겜프\New Unity Project (1)\obj\Debug\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.dll
 D:\겜프\New Unity Project (1)\obj\Debug\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.pdb
+D:\겜프\New Unity Project (1)\Temp\bin\Debug\clipper_library.dll

@@ -290,3 +290,4 @@ D:\겜프\New Unity Project (1)\obj\Debug\PunDemos.DemoSlotcarEditor.csproj.Core
 D:\겜프\New Unity Project (1)\obj\Debug\PunDemos.DemoSlotcarEditor.csproj.CopyComplete
 D:\겜프\New Unity Project (1)\obj\Debug\PunDemos.DemoSlotcarEditor.dll
 D:\겜프\New Unity Project (1)\obj\Debug\PunDemos.DemoSlotcarEditor.pdb
+D:\겜프\New Unity Project (1)\Temp\bin\Debug\clipper_library.dll

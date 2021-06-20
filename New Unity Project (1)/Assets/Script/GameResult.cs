@@ -4,28 +4,78 @@ using UnityEngine;
 
 public class GameResult : MonoBehaviour
 {
-     static public int ClearScore = 0;
-     static public int Star = 0;
-     // Start is called before the first frame update
-     static public void SetRecord(int s)
+     private static GameResult GR;
+
+     static public int MyClearScore = 0;
+     static public int MyStar = 0;
+
+     static public int OtherClearScore = 0;
+     static public int OtherStar = 0;
+
+     public void Start()
      {
-          ClearScore = s;
-          SetStar();
+          if (GR == null)
+          {
+               GR = this;
+               DontDestroyOnLoad(this.gameObject);
+          }
+          else
+          {
+               Destroy(this.gameObject);
+          }
      }
 
-     static private void SetStar()
+     static public void SetMyRecord(int s)
      {
-          if (ClearScore < 100)
-               Star = 0;
-          else if (ClearScore < 150)
-               Star = 1;
-          else if (ClearScore < 200)
-               Star = 2;
-          else
-               Star = 3;
+          MyClearScore = s;
+          SetMyStar();
      }
-     static public int GetStar()
+     static public void SetOtherRecord(int s)
      {
-          return Star;
+          OtherClearScore = s;
+          SetOtherStar();
+     }
+
+     static private void SetMyStar()
+     {
+          if (MyClearScore < 100)
+               MyStar = 0;
+          else if (MyClearScore < 150)
+               MyStar = 1;
+          else if (MyClearScore < 200)
+               MyStar = 2;
+          else
+               MyStar = 3;
+     }
+     static private void SetOtherStar()
+     {
+          if (OtherClearScore < 100)
+               OtherStar = 0;
+          else if (OtherClearScore < 150)
+               OtherStar = 1;
+          else if (OtherClearScore < 200)
+               OtherStar = 2;
+          else
+               OtherStar = 3;
+     }
+
+     static public string GetWinner()
+     {
+          string winner;
+
+          if(MyClearScore > OtherClearScore)
+          {
+               winner = "WIN";
+          }
+          else if (MyClearScore < OtherClearScore)
+          {
+               winner = "LOSE";
+          }
+          else
+          {
+               winner = "DRAW";
+          }
+
+          return winner;
      }
 }

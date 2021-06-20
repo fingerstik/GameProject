@@ -271,3 +271,4 @@ D:\겜프\New Unity Project (1)\obj\Debug\PhotonUnityNetworking.Utilities.csproj
 D:\겜프\New Unity Project (1)\obj\Debug\PhotonUnityNetworking.Utilities.csproj.CopyComplete
 D:\겜프\New Unity Project (1)\obj\Debug\PhotonUnityNetworking.Utilities.dll
 D:\겜프\New Unity Project (1)\obj\Debug\PhotonUnityNetworking.Utilities.pdb
+D:\겜프\New Unity Project (1)\Temp\bin\Debug\clipper_library.dll
