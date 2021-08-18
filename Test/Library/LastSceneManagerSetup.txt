@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/joystickpack/Joystick Pack/Examples/Example Scene.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
