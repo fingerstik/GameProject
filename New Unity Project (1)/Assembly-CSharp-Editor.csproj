@@ -62,10 +62,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Joystick\Editor\DynamicJoystickEditor.cs" />
-    <Compile Include="Assets\Script\Joystick\Editor\FloatingJoystickEditor.cs" />
-    <Compile Include="Assets\Script\Joystick\Editor\JoystickEditor.cs" />
-    <Compile Include="Assets\Script\Joystick\Editor\VariableJoystickEditor.cs" />
+    <Compile Include="Assets\Script\UI\Joystick\Editor\DynamicJoystickEditor.cs" />
+    <Compile Include="Assets\Script\UI\Joystick\Editor\FloatingJoystickEditor.cs" />
+    <Compile Include="Assets\Script\UI\Joystick\Editor\JoystickEditor.cs" />
+    <Compile Include="Assets\Script\UI\Joystick\Editor\VariableJoystickEditor.cs" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>D:/gameProgramming/New Unity Project (1)/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
